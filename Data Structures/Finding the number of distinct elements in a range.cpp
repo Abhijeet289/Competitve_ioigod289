@@ -1,23 +1,23 @@
-Approach->
-Prerequisites = Familiar with BIT.
-Let's understand this with an example.
-Array = {1, 2, 5, 1, 5, 7, 8}.
-Maintain an array lastOccurence[] initially all set to -1.
-Now start traversing the original Array[].
-You may come accross two cases:
-    - The current element is already present in the array. Then we need to decrease the BITarray from lastOccurence[ele]+1
-      till the current index by 1.( This can be easily done in a BIT by update(lastOccurence[arr[i]]+1, -1)) and update(i+1, 1).
-    - The current element has ocured for the first time. Then we need to increase the BITarray from beginning till current index. 
-Finally answering the queries. Sort the queries according to their right index.
-HOW THIS ACTUALLY WORKS??
-    - Since you have queries sorted according to right indices, when you answer any query you only account for the recent 
-      occurence of that element ignoring all the previous occurences.
+// Approach->
+// Prerequisites = Familiar with BIT.
+// Let's understand this with an example.
+// Array = {1, 2, 5, 1, 5, 7, 8}.
+// Maintain an array lastOccurence[] initially all set to -1.
+// Now start traversing the original Array[].
+// You may come accross two cases:
+//     - The current element is already present in the array. Then we need to decrease the BITarray from lastOccurence[ele]+1
+//       till the current index by 1.( This can be easily done in a BIT by update(lastOccurence[arr[i]]+1, -1)) and update(i+1, 1).
+//     - The current element has ocured for the first time. Then we need to increase the BITarray from beginning till current index. 
+// Finally answering the queries. Sort the queries according to their right index.
+// HOW THIS ACTUALLY WORKS??
+//     - Since you have queries sorted according to right indices, when you answer any query you only account for the recent 
+//       occurence of that element ignoring all the previous occurences.
 
-IMP links->
-https://www.geeksforgeeks.org/queries-number-distinct-elements-subarray/
+// IMP links->
+// https://www.geeksforgeeks.org/queries-number-distinct-elements-subarray/
 
-QUESTION->
-Codeforces - Messenger Simulator - https://codeforces.com/problemset/problem/1288/E
+// QUESTION->
+// Codeforces - Messenger Simulator - https://codeforces.com/problemset/problem/1288/E
 
 
 #include <bits/stdc++.h>
