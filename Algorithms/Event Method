@@ -1,0 +1,23 @@
+Given : You will be given n intervals, each having a l(start time) and r(end time).
+Task : You are required to find out number of events going on a particular time.
+Solution : Maintain a vector of pair of ints (vector <pair <int,int> > vec). Push start time into vec with 1, and push end time with -1.
+Ex: (1, 3), (2, 4), (2, 7), (7, 9);
+So your vector would look like : [
+(1, 1), (3, -1), (2, 1), (4, -1), (2, 1), (7, -1), (7, 1), (9, -1)
+]
+
+Now all you need to do is sort the vector vec. But How?
+Sort according to first element in the pair, if there are clashes then gove priority to start time.
+This is the c++ implementation.
+bool cmp(const pair <ll,ll> &a, const pair <ll,ll> &b){
+	if(a.F==b.F)
+		return a.S>b.S;
+	return a.F<b.F;
+}
+Now just iterate the sorted vector.
+Maintain the variable cnt = 0. Each time you get starting node, do cnt++ and vice cersa for ending node.
+
+GFG Article https://www.geeksforgeeks.org/find-the-point-where-maximum-intervals-overlap/
+
+CF Question : https://codeforces.com/contest/1420/problem/D
+Accepted Submission : https://codeforces.com/contest/1420/submission/95347403
