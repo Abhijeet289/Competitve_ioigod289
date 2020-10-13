@@ -1,0 +1,6 @@
+Dijsktra : Simply an algo to find the shortest path from a single source in a weighted graph.
+Applications
+1. https://codeforces.com/problemset/problem/938/D
+-> https://codeforces.com/contest/938/submission/95445534
+
+2. 
