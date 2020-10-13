@@ -1,0 +1,10 @@
+Given : An undirected graph and also promised that each node can be visited from every other node.
+Task : You need to direct the edges such that whole graph is a SCC
+Solution :
+	Simply run a dfs, and direct the edges in the dfs manner.
+	Now you get a directed graph.
+	Check the number of SCC's using Kosaraju's algorithm.
+	If the number of SCC's = 1 then we get the answer or the answer does not exist.
+
+Question : https://codeforces.com/problemset/problem/118/E
+Accepted Solution : https://codeforces.com/contest/118/submission/95390284
