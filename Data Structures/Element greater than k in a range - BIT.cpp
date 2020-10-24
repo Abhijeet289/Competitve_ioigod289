@@ -1,3 +1,6 @@
+// https://www.spoj.com/problems/KQUERY/
+
+
 #include <bits/stdc++.h>
 using namespace std;
 #pragma GCC optimize("O3")
@@ -41,7 +44,7 @@ void input(){
 
 bool cmp(abhi a, abhi b){
     if(a.val==b.val)
-        return a.lp < b.lp;
+        return a.lp > b.lp;
     return a.val > b.val;
 }
 
