@@ -1,0 +1,149 @@
+If you are told to find the MST in a complete graph, where each edge is the manhattan distance of the two nodes. Then the following assumptions would be really useful.
+1 - Dimensional Nodes ----------->
+	-> Since the graph is complete, there would be n^2 edges. But computing them would be just a waste of time. Instead we only look for the edges which can really me helpful in forming a MAXIMUM SPANNING TREE
+	-> So how do we actually find which edges are useful and discard the redundant ones.
+	-> Well let me give a simple example. arr[] = {1, 3, 5, 9, 18}. If these were the nodes and you were to find the maximum spanning tree, then brute force will lead to (5)*(5-1)/2 edges. But we can observe that only the edges containing atleast one element as the smallest or the largest of the array is useful. So all we need to find is smallest element and the largest element. Then connect the to each node, resulting into 2*n edges.
+	-> And now use any standard algo ( kruskal or prim ) for calculating the answer.
+
+D - Dimensional MST
+	-> If we use the similar approach, in this too, well we might say how to actually define which point is the smallest and which one is largest.
+	-> So in a D dimension we cannot directly judge as we did in 1 dimension. But turns out we have a way to tackle this situation
+	-> We consider all the possible combinations, like 2^d combinations and for each combination find the largest and the smallest and add 2*n edges.
+	-> So finally we have (2^d)*(2*n) edges, which is a bit less than n*n provided value of d is small enough.
+	
+https://www.codechef.com/OCT20A/problems/DDIMMST
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#pragma GCC optimize("O3")
+#pragma GCC target("sse4")
+#define ll long long int
+#define ld long double
+#define pb push_back
+#define F first
+#define S second
+#define MOD 998244353
+#define mod1 1187278649
+#define mod2 1149736019
+#define ioi cout<<"\n------------ioi------------\n"
+#define all(x) (x).begin(),(x).end()
+#define sz(x) (int)(x).size()
+
+const ld PI=3.14159265358979323;
+ll linf=(ll)2e18;
+const int inf=1011111111;
+const int N=200005;
+// global variables...
+ll n, d;
+ll arr[N][5], rt[N], trsz[N];
+vector < pair < ll , pair <ll,ll> > > edges;
+
+//functions...
+void input(){
+    edges.clear();
+    cin>>n>>d;
+    for(int i=0;i<=n;i++){
+        rt[i] = i;
+        trsz[i] = 1;
+    }
+    for(int i=1;i<=n;i++)
+        for(int j=0;j<d;j++)
+            cin>>arr[i][j];
+}
+
+ll find_root(ll i){
+    while(rt[i]!=i){
+        rt[i]=rt[rt[i]];
+        i=rt[i];
+    }
+    return i;
+}
+void uni(ll a, ll b){
+    ll r1=find_root(a);
+    ll r2=find_root(b);
+    if(trsz[r1]<trsz[r2]){
+        rt[r1]=rt[r2];
+        trsz[r2]+=trsz[r1];
+    }
+    else{
+        rt[r2]=rt[r1];
+        trsz[r1]+=trsz[r2];
+    }
+}
+
+ll kruskal(){
+    sort(all(edges));
+    reverse(all(edges));
+    ll res = 0;
+    for(int i=0;i<sz(edges);i++){
+        ll w = edges[i].F;
+        ll u = edges[i].S.F;
+        ll v = edges[i].S.S;
+        ll r1 = find_root(u);
+        ll r2 = find_root(v);
+        // cout<<w<<"    ";
+        // cout<<r1<<" "<<r2<<"\n";
+        if(r1==r2)
+            continue;
+        res += w;
+        uni(u, v);
+    }
+    return res;
+}
+
+int main()
+{
+    // #ifndef ONLINE_JUDGE
+    //     freopen("inputf.txt", "r", stdin);
+    //     freopen("outputf.txt", "w", stdout);
+    // #endif
+    
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    int test=1;
+    // cin>>test;
+    while(test--){
+        input();
+        for(int mask=0;mask<(1<<d);mask++){
+            vector < pair < ll , ll> > v1;
+            for(int i=1;i<=n;i++){
+                ll sum = 0;
+                for(int j=0;j<d;j++){
+                    if(mask&(1<<j))
+                        sum -= arr[i][j];
+                    else
+                        sum += arr[i][j];
+                }
+                v1.pb({sum, i});
+            }
+            sort(all(v1));
+            ll q1 = v1[0].S;
+            ll q2 = v1[n-1].S;
+            for(int i=1;i<=n;i++){
+                if(i!=q1){
+                    ll q3 = 0;
+                    for(int j=0;j<d;j++)
+                        q3 += abs(arr[i][j] - arr[q1][j]);
+
+                    edges.pb({q3, {i, q1}});
+                }
+                if(i!=q2){
+                    ll q3 = 0;
+                    for(int j=0;j<d;j++)
+                        q3 += abs(arr[i][j] - arr[q2][j]);
+
+                    edges.pb({q3, {i, q2}});
+                }
+            }
+        }
+        // for(int i=0;i<sz(edges);i++)
+        //     cout<<edges[i].F<<"     "<<edges[i].S.F<<" "<<edges[i].S.S<<"\n";
+        // ioi;
+        ll ans = kruskal();
+        cout<<ans<<"\n";
+    }
+    cerr<< '\n' << "Time elapsed :" << clock() * 1000.0 / CLOCKS_PER_SEC << " ms\n" ;
+    return 0;
+}
