@@ -6,13 +6,15 @@
 ````
 # Gym Tips
     Try reading all the questions, so that you dont miss out on logically easy, implementation heavy questions.
-    
 ````
 ````
 # Geometry Tips
     Avoid using long double unnecessarily.
     Comment the code whenever possible.
-    
+````
+````
+# BIT MANIPULATION Tips
+        
 ````
 
 ## Sub Topic Headings H2
