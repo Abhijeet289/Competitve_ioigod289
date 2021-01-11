@@ -5,7 +5,8 @@
 
 ````
 # Gym Tips
-    Try reading all the questions, so that you dont miss out on logically easy but implementation heavy questions.
+    Try reading all the questions, so that you dont miss out on
+    logically easy but implementation heavy questions.
     
 ````
 ````
