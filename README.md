@@ -3,6 +3,18 @@
 * Daily 10 questions. 3 topic specific, 3 codechef long challenges, 4 codeforces
 * Read atleast 3 topics daily
 
+````
+# Gym Tips
+    Try reading all the questions, so that you dont miss out on logically easy but implementation heavy questions.
+    
+````
+````
+# Geometry Tips
+    Avoid using long double unnecessarily.
+    Comment the code whenever possible.
+    
+````
+
 ## Sub Topic Headings H2
 Sub Topic Headings H2 is used for sub sections like Configurations, Authors etc.
 
