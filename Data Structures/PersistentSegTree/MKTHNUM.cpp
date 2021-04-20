@@ -1,3 +1,4 @@
+// https://www.spoj.com/problems/MKTHNUM/
 // 058
 // april 19th, 2021
 // true
